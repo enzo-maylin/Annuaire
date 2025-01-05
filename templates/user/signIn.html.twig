@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}
+    Connexion
+{% endblock %}
+
+{% block page_content %}
+    <main class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-body p-5">
+                        <h2 class="mb-4 text-center">Se connecter</h2>
+                        <form action="{{ path('signIn') }}" method="post" class="needs-validation">
+
+                            <!-- Champ Login en form-floating -->
+                            <div class="form-floating mb-4">
+                                <input type="text" class="form-control" id="login" name="_username" placeholder="Nom d'utilisateur" value="{{ lastUsername }}" required>
+                                <label for="login">Nom d'utilisateur</label>
+                            </div>
+
+                            <!-- Champ Mot de Passe en form-floating -->
+                            <div class="form-floating mb-4">
+                                <input type="password" class="form-control" id="pwd" name="_password" placeholder="Mot de passe" required>
+                                <label for="pwd">Mot de passe</label>
+                            </div>
+
+                            <!-- Bouton de Connexion -->
+                            <div class="d-grid gap-2 mt-4">
+                                <button type="submit" class="btn btn-primary btn-lg">Se connecter</button>
+                            </div>
+
+                            <!-- Champ CSRF Token caché -->
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                        </form>
+
+                        <!-- Trait séparateur -->
+                        <hr class="my-4">
+
+                        <!-- Bouton de redirection vers Inscription -->
+                        <div class="d-grid gap-2 mt-4">
+                            <a href="{{ path('signUp') }}" class="btn btn-outline-primary btn-lg">Créer un compte</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

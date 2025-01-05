@@ -1,0 +1,52 @@
+<div class="card">
+    <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs" id="cardTabs{{ user.code }}">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#profileTab{{ user.code }}" aria-current="true"><i class="bi bi-person-vcard-fill"></i></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#contactTab{{ user.code }}"><i class="bi bi-chat-dots-fill"></i></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#adresseTab{{ user.code }}"><i class="bi bi-house-fill"></i></a>
+            </li>
+        </ul>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title text-center" >
+            <a class="link-dark link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ path("Ownpage", {'code' : user.code}) }}">
+                {{ user.login }}
+            </a>
+        </h5>
+
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="profileTab{{ user.code }}">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><i class="bi bi-file-earmark-person"></i> {{ user.firstName }}</li>
+                    <li class="list-group-item"><i class="bi bi-file-person"></i> {{ user.lastName }}</li>
+                    <li class="list-group-item"><i class="bi bi-wallet2"></i> {{ user.function }}</li>
+                </ul>
+            </div>
+
+            <div class="tab-pane fade" id="contactTab{{ user.code }}">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><i class="bi bi-envelope-at"></i> {{ user.email }}</li>
+                    <li class="list-group-item"><i class="bi bi-phone"></i> {{ user.mobileNumber }}</li>
+                    <li class="list-group-item"><i class="bi bi-telephone"></i> {{ user.landlineNumber }}</li>
+                </ul>
+            </div>
+
+            <div class="tab-pane fade" id="adresseTab{{ user.code }}">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><i class="bi bi-flag"></i> {{ user.country }}</li>
+                    <li class="list-group-item"><i class="bi bi-houses"></i> {{ user.department }}</li>
+                    <li class="list-group-item"><i class="bi bi-mailbox-flag"></i> {{ user.postalAdresse }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer text-center">
+        <small class="text-muted">Dernière mise à jour le {{ user.updatedAt|date('d M Y') }}</small>
+    </div>
+</div>

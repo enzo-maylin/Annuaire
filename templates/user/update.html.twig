@@ -1,0 +1,94 @@
+{% extends "base.html.twig" %}
+
+{% block page_title %}Modifier Profil{% endblock %}
+{% block page_js %}
+    <script src="{{ asset('js/codeUser.js') }}" defer></script>
+{% endblock %}
+{% block page_content %}
+    <main class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-body p-5">
+                        <h2 class="mb-4 text-center">Modification du Profil</h2>
+
+                        {{ form_start(formUpdate) }}
+                        <fieldset>
+
+                            <!-- Champ Visibilité en form-switch -->
+                            <div class="form-check form-switch mb-4">
+                                {{ form_widget(formUpdate.visibility, {'attr': {'class': 'form-check-input'}}) }}
+                                {{ form_label(formUpdate.visibility, 'Visibilité', {'label_attr': {'class': 'form-check-label'}}) }}
+                            </div>
+
+                            <!-- Champs Formulaires en form-floating avec placeholder -->
+                            <div class="form-floating mb-4">
+                                {{ form_widget(formUpdate.mobile_number, {'attr': {'class': 'form-control', 'placeholder': 'Téléphone mobile'}}) }}
+                                {{ form_label(formUpdate.mobile_number, 'Téléphone mobile') }}
+                                {{ form_errors(formUpdate.mobile_number) }}
+                            </div>
+
+                            <div class="form-floating mb-4">
+                                {{ form_widget(formUpdate.landline_number, {'attr': {'class': 'form-control', 'placeholder': 'Téléphone fixe'}}) }}
+                                {{ form_label(formUpdate.landline_number, 'Téléphone fixe') }}
+                                {{ form_errors(formUpdate.landline_number) }}
+                            </div>
+
+                            <div class="form-floating mb-4">
+                                {{ form_widget(formUpdate.code, {'attr': {'class': 'form-control border border-success', 'placeholder': 'Code profil', 'id': 'codeProfil'}}) }}
+                                {{ form_label(formUpdate.code, 'Code') }}
+                                {{ form_errors(formUpdate.code) }}
+                            </div>
+
+                            <div class="form-floating mb-4">
+                                {{ form_widget(formUpdate.country, {'attr': {'class': 'form-control', 'placeholder': 'Pays'}}) }}
+                                {{ form_label(formUpdate.country, 'Pays') }}
+                                {{ form_errors(formUpdate.country) }}
+                            </div>
+
+                            <div class="form-floating mb-4">
+                                {{ form_widget(formUpdate.department, {'attr': {'class': 'form-control', 'placeholder': 'Département'}}) }}
+                                {{ form_label(formUpdate.department, 'Département') }}
+                                {{ form_errors(formUpdate.department) }}
+                            </div>
+
+                            <div class="form-floating mb-4">
+                                {{ form_widget(formUpdate.function, {'attr': {'class': 'form-control', 'placeholder': 'Fonction'}}) }}
+                                {{ form_label(formUpdate.function, 'Fonction') }}
+                                {{ form_errors(formUpdate.function) }}
+                            </div>
+
+                            <div class="form-floating mb-4">
+                                {{ form_widget(formUpdate.postal_adresse, {'attr': {'class': 'form-control', 'placeholder': 'Adresse Postale'}}) }}
+                                {{ form_label(formUpdate.postal_adresse, 'Adresse Postale') }}
+                                {{ form_errors(formUpdate.postal_adresse) }}
+                            </div>
+
+                            <div class="form-floating mb-4">
+                                {{ form_widget(formUpdate.first_name, {'attr': {'class': 'form-control', 'placeholder': 'Prénom'}}) }}
+                                {{ form_label(formUpdate.first_name, 'Prénom') }}
+                                {{ form_errors(formUpdate.first_name) }}
+                            </div>
+
+                            <div class="form-floating mb-4">
+                                {{ form_widget(formUpdate.last_name, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
+                                {{ form_label(formUpdate.last_name, 'Nom') }}
+                                {{ form_errors(formUpdate.last_name) }}
+                            </div>
+
+                            <!-- Bouton de Soumission -->
+                            <div class="d-grid gap-2 mt-4 btn-group">
+                                {{ form_widget(formUpdate.modifier, {'attr':{'class':'btn btn-primary btn-lg rounded'}}) }}
+                                <a href="{{ path('Ownpage', {'code': codeUser}) }}" class="btn btn-secondary btn-lg rounded">Visualiser</a>
+                            </div>
+
+                        </fieldset>
+                        {{ form_rest(formUpdate) }}
+                        {{ form_end(formUpdate) }}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

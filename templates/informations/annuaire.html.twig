@@ -1,0 +1,47 @@
+{% extends "base.html.twig" %}
+
+{% block page_title %}Annuaire{% endblock %}
+
+{% block page_content %}
+    {% if users is empty %}
+        <div class="col-12 text-center">
+            <h1 class="display-4 text-muted">L'annuaire est vide...</h1>
+        </div>
+    {% else  %}
+        <main class="container my-4">
+            <section class="row g-4">
+                {% for user in users.data %}
+                    <div class="col-12 col-md-6 col-lg-4">
+                        {{ include("informations/card.html.twig", {'user' : user}) }}
+                    </div>
+                {% endfor%}
+            </section>
+
+            {# Pagination #}
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center my-5">
+                    {# Lien Précédent - Désactivé si on est à la première page #}
+                    <li class="page-item {% if users.page == 0 %}disabled{% endif %}">
+                        <a class="page-link" href="{{ path("annuaire", {'page' : users.page - 1}) }}" aria-label="Précédent">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+
+                    {# Pages #}
+                    {% for i in 0..users.pages %}
+                        <li class="page-item {% if i == users.page %}active{% endif %}">
+                            <a class="page-link" href="{{ path("annuaire", {'page' : i}) }}">{{ i + 1 }}</a>
+                        </li>
+                    {% endfor %}
+
+                    {# Lien Suivant - Désactivé si on est à la dernière page #}
+                    <li class="page-item {% if users.page == users.pages %}disabled{% endif %}">
+                        <a class="page-link" href="{{ path("annuaire", {'page' : users.page + 1}) }}" aria-label="Suivant">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </main>
+    {% endif %}
+{% endblock %}

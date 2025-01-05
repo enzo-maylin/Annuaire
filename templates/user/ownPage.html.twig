@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+{% block page_title %}
+    Page Personnel de {{ user.login }}
+{% endblock %}
+
+{% block page_content %}
+    <main class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-body p-5">
+                        <h2 class="mb-4 text-center">Page Personnelle de {{ user.login }}</h2>
+                        {% if "ROLE_ADMIN" in user.roles  %}
+                            <span class="badge bg-info-subtle border border-info-subtle text-info-emphasis rounded-pill mb-3">Administrateur</span>
+                        {% endif %}
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <p>Login: {{ user.login }}</p>
+                            </li>
+                            <li class="list-group-item">
+                                <p>Code : {{ user.code }}</p>
+                            </li>
+                            <li class="list-group-item">
+                                <p>Prénom : {{ user.firstName }}</p>
+                            </li>
+                            <li class="list-group-item">
+                                <p>Nom : {{ user.lastName }}</p>
+                            </li>
+                            <li class="list-group-item">
+                                <p>Email : {{ user.email }}</p>
+                            </li>
+                            <li class="list-group-item">
+                                <p>Téléphone Portable : {{ user.mobileNumber }}</p>
+                            </li>
+                            <li class="list-group-item">
+                                <p>Téléphone Fixe : {{ user.landlineNumber }}</p>
+                            </li>
+                            <li class="list-group-item">
+                                <p>Pays : {{ user.country }}</p>
+                            </li>
+                            <li class="list-group-item">
+                                <p>Département : {{ user.department }}</p>
+                            </li>
+                            <li class="list-group-item">
+                                <p>Profession : {{ user.function }}</p>
+                            </li>
+                            <li class="list-group-item">
+                                <p>Adresse postale : {{ user.postalAdresse }}</p>
+                            </li>
+                            <li class="list-group-item">
+                                <p>Date de dernière connexion : {{ user.lastSignin|date('d M Y') }}</p>
+                            </li>
+                            <li class="list-group-item">
+                                <p>Date de dernière modification : {{ user.updatedAt|date('d M Y') }}</p>
+                            </li>
+                        </ul>
+                        {% if is_granted('PERM_DELETED', user) %}
+                            <a class="btn btn-danger fw-bold me-2" href="{{ path("delete", {'code' : user.code}) }}">
+                                <i class="bi bi-person-x"></i> Supprimer le profil
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+

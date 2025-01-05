@@ -1,0 +1,72 @@
+{% extends "base.html.twig" %}
+
+{% block page_title %}Inscription{% endblock %}
+{% block page_js %}
+    <script src="{{ asset('js/codeUser.js') }}" defer></script>
+{% endblock %}
+
+{% block page_content %}
+    <main class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-body p-5">
+                        <h2 class="mb-4 text-center">Créer un compte</h2>
+
+                        {{ form_start(formSignUp, {'attr': {'class': 'needs-validation'}}) }}
+
+                        <!-- Champ Login en form-floating -->
+                        <div class="form-floating mb-4">
+                            {{ form_widget(formSignUp.login, {'attr': {'class': 'form-control', 'placeholder': 'Nom d\'utilisateur'}}) }}
+                            {{ form_label(formSignUp.login, 'Nom d\'utilisateur') }}
+                            {{ form_errors(formSignUp.login) }}
+                        </div>
+
+                        <!-- Champ Mot de Passe en form-floating -->
+                        <div class="form-floating mb-4">
+                            {{ form_widget(formSignUp.plainPassword, {'attr': {'class': 'form-control', 'placeholder': 'Mot de passe'}}) }}
+                            {{ form_label(formSignUp.plainPassword, 'Mot de passe') }}
+                            {{ form_errors(formSignUp.plainPassword) }}
+                        </div>
+
+                        <!-- Champ Email en form-floating -->
+                        <div class="form-floating mb-4">
+                            {{ form_widget(formSignUp.email, {'attr': {'class': 'form-control', 'placeholder': 'Adresse email'}}) }}
+                            {{ form_label(formSignUp.email, 'Adresse email') }}
+                            {{ form_errors(formSignUp.email) }}
+                        </div>
+
+                        <!-- Champ Code en form-floating -->
+                        <div class="form-floating mb-4">
+                            {{ form_widget(formSignUp.code, {'attr': {'class': 'form-control border border-success', 'placeholder': 'Code profil', 'id': 'codeProfil'}}) }}
+                            {{ form_label(formSignUp.code, 'Code du profil') }}
+                            {{ form_errors(formSignUp.code) }}
+                        </div>
+
+                        <!-- Switch de visibilité -->
+                        <div class="form-check form-switch mb-4">
+                            {{ form_widget(formSignUp.visibility, {'attr': {'class': 'form-check-input'}}) }}
+                            {{ form_label(formSignUp.visibility, 'Visible ?', {'label_attr': {'class': 'form-check-label'}}) }}
+                        </div>
+
+                        <!-- Bouton d'inscription -->
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg" id="buttonSignUp">S'inscrire</button>
+                        </div>
+
+                        {{ form_rest(formSignUp) }}
+                        {{ form_end(formSignUp) }}
+
+                        <!-- Trait séparateur -->
+                        <hr class="my-4">
+
+                        <!-- Bouton de redirection vers Connexion -->
+                        <div class="d-grid gap-2 mt-4">
+                            <a href="{{ path('signIn') }}" class="btn btn-outline-primary btn-lg">Se connecter</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
